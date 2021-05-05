@@ -11,7 +11,7 @@ const Start = ({ setUsername }) => {
       <input
         className='startInput'
         type='text'
-        placeholder='Enter your name'
+        placeholder='Wpisz swoje imię'
         ref={inputRef}
       />
       <button className='startButton' onClick={handleClick}>

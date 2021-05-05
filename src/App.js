@@ -3,37 +3,34 @@ import { useState } from "react";
 import { data } from "./data/db";
 import Quiz from "./components/Quiz";
 import Start from "./components/Start";
+import EndGame from "./components/EndGame";
+import Header from "./components/Header";
 
 function App() {
   const [username, setUsername] = useState(null);
   const [questionNumber, setQuestionNumber] = useState(1);
   const [end, setEnd] = useState(false);
   const [score, setScore] = useState(0);
+  const [success, setSuccess] = useState(false);
 
-  const showScore = () => {
-    if (score === 1) {
-      return " punkt";
-    } else if ((score === 2, 3, 4)) {
-      return " punkty";
-    } else {
-      return " punktów";
+  // console.log(data.length);
+  // console.log("app score", score);
+  // console.log(score === data.length);
+
+  const isSuccess = () => {
+    if (score === data.length) {
+      setSuccess(true);
     }
   };
-  console.log(showScore());
+
   return (
     <div className='app'>
-      <div className='top'>front-quiz</div>
+      <Header />
       {username ? (
         <>
           {end ? (
             <>
-              <div className='endText'>
-                <h1>Przegrałeś :(</h1>
-                <h3>
-                  Zdobyłeś {score}
-                  {showScore()}!
-                </h3>
-              </div>
+              <EndGame score={score} username={username} success={success} />
             </>
           ) : (
             <>
@@ -44,8 +41,11 @@ function App() {
                 setEnd={setEnd}
                 score={score}
                 setScore={setScore}
+                success={success}
+                setSuccess={setSuccess}
+                isSuccess={isSuccess}
               />
-              <div>Trzymam kciuki za Ciebie, {username}</div>
+              <h2 className='goodText'>Trzymam kciuki za Ciebie, {username}</h2>
             </>
           )}
         </>

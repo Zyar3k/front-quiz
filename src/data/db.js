@@ -228,7 +228,7 @@ export const data = [
     question: "Które z poniższych stwierdzeń da wynik false?",
     answers: [
       {
-        text: "'' == false",
+        text: "' ' == false",
         correct: false,
       },
       {

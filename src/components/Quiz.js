@@ -7,6 +7,8 @@ const Quiz = ({
   setEnd,
   score,
   setScore,
+  success,
+  setSuccess,
 }) => {
   const [question, setQuestion] = useState(null);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
@@ -33,15 +35,25 @@ const Quiz = ({
         setQuestionNumber((prev) => prev + 1);
         setScore((prev) => prev + 1);
         setSelectedAnswer(null);
+        if (questionNumber === data.length) {
+          setSuccess(true);
+          setEnd(true);
+        }
       } else {
         setEnd(true);
       }
     });
   };
 
-  console.log(score);
   return (
     <div className='quiz'>
+      <div className='points'>
+        <p>Punkty:</p>
+        <p>
+          {score}/{data.length}
+        </p>
+      </div>
+
       <div className='question'>{question?.question}</div>
       <div className='answers'>
         {question?.answers.map((ans, index) => (
