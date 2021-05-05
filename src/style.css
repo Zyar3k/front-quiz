@@ -11,6 +11,7 @@ body {
 .app {
   background-color: #fff9e0;
   height: 100vh;
+  position: relative;
 }
 
 /*
@@ -59,7 +60,7 @@ body {
   padding: 14px;
   text-align: center;
   font-size: 18px;
-  margin: 14px 0;
+  margin: 20px 0;
   border-radius: 10px;
   cursor: pointer;
 }
@@ -116,4 +117,11 @@ body {
     background: crimson;
     border-color: crimson;
   }
+}
+
+.endText {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
