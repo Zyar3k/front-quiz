@@ -1,0 +1,122 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Lato", sans-serif;
+}
+
+.app {
+  background-color: #fff9e0;
+  height: 100vh;
+}
+
+/*
+#a1c45a
+#fff9e0
+#f1c550
+#ea4c4c
+*/
+
+.top {
+  height: 10%;
+  background-color: #a1c45a;
+  font-family: "Sedgwick Ave Display", cursive;
+  text-shadow: 2px 2px 4px rgb(115, 115, 115);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  box-shadow: 0 2px 5px rgb(115, 115, 115);
+}
+
+.quiz {
+  height: 85%;
+  width: 90%;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.question {
+  padding: 10px 4px;
+  margin-top: 20px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.answers {
+  /* background-color: lightcyan; */
+}
+
+.answer {
+  border: 2px solid #f1c550;
+  background-color: #f1c550;
+  padding: 14px;
+  text-align: center;
+  font-size: 18px;
+  margin: 14px 0;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.answer:hover,
+.answer.active {
+  font-weight: 700;
+  background-color: #a1c45a;
+}
+
+.answer.correct {
+  animation: correct 3s ease forwards;
+}
+
+@keyframes correct {
+  0%,
+  22%,
+  42% {
+    background: green;
+    border-color: #f1c550;
+  }
+  20%,
+  40%,
+  60% {
+    background-color: #a1c45a;
+    border-color: #f1c550;
+    /* background: rgb(0, 88, 0); */
+  }
+  62%,
+  100% {
+    background: green;
+    border-color: green;
+  }
+}
+
+.answer.wrong {
+  animation: wrong 3s ease forwards;
+}
+
+@keyframes wrong {
+  0%,
+  22%,
+  42% {
+    background: #ea4c4c;
+    border-color: #f1c550;
+    font-weight: 900;
+  }
+  20%,
+  40%,
+  60% {
+    background: rgb(164, 06, 06);
+    border-color: #f1c550;
+  }
+  62%,
+  100% {
+    background: crimson;
+    border-color: crimson;
+    font-weight: 900;
+  }
+}
