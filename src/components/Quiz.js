@@ -1,17 +1,34 @@
-import React from "react";
+import { useState, useEffect } from "react";
 
-const Quiz = () => {
+const Quiz = ({ data, questionNumber, setQuestionNumber }) => {
+  const [question, setQuestion] = useState(null);
+  const [selectedAnswer, setSelectedAnswer] = useState(null);
+  const [className, setClassName] = useState("answer");
+
+  useEffect(() => {
+    setQuestion(data[questionNumber - 1]);
+  }, [data, questionNumber]);
+
+  const handleClick = (ans) => {
+    setSelectedAnswer(ans);
+    setClassName("answer active");
+    setTimeout(() => {
+      setClassName(ans.correct ? "answer correct" : "answer wrong");
+    }, 1500);
+  };
+
   return (
     <div className='quiz'>
-      <div className='question'>
-        Która metoda w JavaScript zwraca nową tablicę na podstawie wyników
-        wykonania określonej akcji w każdym elemencie oryginalnej tablicy?
-      </div>
+      <div className='question'>{question?.question}</div>
       <div className='answers'>
-        <div className='answer'>map</div>
-        <div className='answer'>reduce</div>
-        <div className='answer'>forEach</div>
-        <div className='answer'>transform</div>
+        {question?.answers.map((ans) => (
+          <div
+            className={selectedAnswer === ans ? className : "answer"}
+            onClick={() => handleClick(ans)}
+          >
+            {ans.text}
+          </div>
+        ))}
       </div>
     </div>
   );
