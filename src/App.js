@@ -2,8 +2,10 @@ import { useState } from "react";
 
 import { data } from "./data/db";
 import Quiz from "./components/Quiz";
+import Start from "./components/Start";
 
 function App() {
+  const [username, setUsername] = useState(null);
   const [questionNumber, setQuestionNumber] = useState(1);
   const [end, setEnd] = useState(false);
   const [score, setScore] = useState(0);
@@ -21,25 +23,34 @@ function App() {
   return (
     <div className='app'>
       <div className='top'>front-quiz</div>
-      {end ? (
+      {username ? (
         <>
-          <div className='endText'>
-            <h1>Przegrałeś :(</h1>
-            <h3>
-              Zdobyłeś {score}
-              {showScore()}!
-            </h3>
-          </div>
+          {end ? (
+            <>
+              <div className='endText'>
+                <h1>Przegrałeś :(</h1>
+                <h3>
+                  Zdobyłeś {score}
+                  {showScore()}!
+                </h3>
+              </div>
+            </>
+          ) : (
+            <>
+              <Quiz
+                data={data}
+                questionNumber={questionNumber}
+                setQuestionNumber={setQuestionNumber}
+                setEnd={setEnd}
+                score={score}
+                setScore={setScore}
+              />
+              <div>Trzymam kciuki za Ciebie, {username}</div>
+            </>
+          )}
         </>
       ) : (
-        <Quiz
-          data={data}
-          questionNumber={questionNumber}
-          setQuestionNumber={setQuestionNumber}
-          setEnd={setEnd}
-          score={score}
-          setScore={setScore}
-        />
+        <Start setUsername={setUsername} />
       )}
     </div>
   );
